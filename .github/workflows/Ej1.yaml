@@ -11,8 +11,6 @@ jobs:
         ref: "${{ github.ref }}"
     - name: execute script and save output to var
       run: |
-        pwd
-        ls -a
         chmod +x ./auxiliar/echo_data.sh
         ./auxiliar/echo_data.sh >> $GITHUB_OUTPUT
       shell: bash
