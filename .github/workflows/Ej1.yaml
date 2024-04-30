@@ -1,0 +1,15 @@
+name: show info from runner and branch on push
+on: push
+
+jobs:
+  print-data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: pull and checkout from git repository
+      run: |
+        echo "The branch is ${{ github.env.branch.name }}"
+    
+
+            
+
