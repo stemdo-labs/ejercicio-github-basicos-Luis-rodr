@@ -5,7 +5,9 @@ jobs:
   print-data:
     runs-on: ubuntu-latest
     steps:
-    - name: get branch name
-      run: echo "The branch is $GITHUB_REF."
+    - name: get branch data
+      run: | 
+        echo "Triggered by a type $GITHUB_REF_TYPE"
+        echo "The branch is $GITHUB_REF, with the short name $GITHUB_REF_NAME"
     - name: get os name
-      run: echo "The operating system on the runner is $RUNNER_OS."
+      run: echo "The operating system on the runner is $RUNNER_OS, name $RUNNER_NAME, WITH ARCHITECTURE $RUNNER_ARCH"
