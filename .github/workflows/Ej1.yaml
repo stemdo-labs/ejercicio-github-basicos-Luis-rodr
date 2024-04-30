@@ -8,7 +8,7 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v4
       with:
-        ref: $GITHUB_REF_NAME
+        ref: "${{ github.ref }}"
     - name: execute script and save output to var
       run: |
         pwd
