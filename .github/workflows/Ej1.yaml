@@ -9,7 +9,3 @@ jobs:
       run: echo "The branch is $env:GITHUB_REF."
     - name: get os name
       run: echo "The operating system on the runner is $env:RUNNER_OS."
-    
-
-            
-
