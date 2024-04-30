@@ -4,11 +4,11 @@ on: push
 jobs:
   print-data:
     runs-on: ubuntu-latest
-
     steps:
-    - name: pull and checkout from git repository
-      run: |
-        echo "The branch is ${{ github.env.branch.name }}"
+    - name: get branch name
+      run: echo "The branch is $env:GITHUB_REF."
+    - name: get os name
+      run: echo "The operating system on the runner is $env:RUNNER_OS."
     
 
             
