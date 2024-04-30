@@ -9,6 +9,8 @@ jobs:
       uses: actions/checkout@v4
     - name: execute script and save output to var
       run: |
+        pwd
+        ls -a
         chmod +x ./ejercicio-github-basicos-Luis-rodr/auxiliar/echo_data.sh
         ./ejercicio-github-basicos-Luis-rodr/auxiliar/echo_data.sh >> $GITHUB_OUTPUT
       shell: bash
