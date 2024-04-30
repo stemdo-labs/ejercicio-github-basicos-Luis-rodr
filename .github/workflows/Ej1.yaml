@@ -9,8 +9,8 @@ jobs:
       uses: actions/checkout@v4
     - name: execute script and save output to var
       run: |
-        chmod +x ./auxiliar/echo_data.sh
-        ./auxiliar/echo_data.sh >> $GITHUB_OUTPUT
+        chmod +x ./ejercicio-github-basicos-Luis-rodr/auxiliar/echo_data.sh
+        ./ejercicio-github-basicos-Luis-rodr/auxiliar/echo_data.sh >> $GITHUB_OUTPUT
       shell: bash
     - name: show output
       run: echo $GITHUB_OUTPUT 
