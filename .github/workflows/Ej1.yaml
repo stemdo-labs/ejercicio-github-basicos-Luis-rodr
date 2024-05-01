@@ -5,11 +5,14 @@ jobs:
   print-data:
     runs-on: ubuntu-latest
     steps:
-    - name: get branch data
-      run: | 
-        echo "Triggered by a type $GITHUB_REF_TYPE"
-        echo "The branch is $GITHUB_REF, with the short name $GITHUB_REF_NAME"
-    - name: get os name
-      run: echo "The operating system on the runner is $RUNNER_OS, name $RUNNER_NAME, WITH ARCHITECTURE $RUNNER_ARCH"
-    - name: get variable that shouldnt exist
-      run: echo "github base ref is $GITHUB_BASE_REF"
+    - name: checkout repo
+      uses: actions/checkout@v4
+      with:
+        ref: "${{ github.ref }}"
+    - name: execute script and save output to var
+      run: |
+        chmod +x ./auxiliar/echo_data.sh
+        ./auxiliar/echo_data.sh
+      shell: bash
+
+      
