@@ -1,0 +1,18 @@
+##############################
+# Objetivo: Crear un wokflow que simule los siguientes estados de CI/CD buid , test y push. Para la simulación podemos usar echo para motrar por pantalla el estado del flujo.
+###########################
+name: show info from runner and branch on push
+on: push
+
+jobs:
+  print-data:
+    runs-on: ubuntu-latest
+    steps:
+    - name: get branch data
+      run: | 
+        echo "Triggered by a type $GITHUB_REF_TYPE"
+        echo "The branch is $GITHUB_REF, with the short name $GITHUB_REF_NAME"
+    - name: get os name
+      run: echo "The operating system on the runner is $RUNNER_OS, name $RUNNER_NAME, WITH ARCHITECTURE $RUNNER_ARCH"
+    - name: get variable that shouldnt exist
+      run: echo "github base ref is $GITHUB_BASE_REF"
