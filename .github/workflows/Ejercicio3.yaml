@@ -1,0 +1,25 @@
+name: Create issue on PR
+
+on:
+  pull_request:
+    types: opened
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install gh cli
+        run: |
+          curl -sL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+          sudo apt-get update
+          sudo apt-get install gh
+    
+      - name: Create Issue
+        run: |
+          PR_TITLE=$(gh pr view ${{ github.event.pull_request.number }} --json title -q ".title")
+          PR_URL=$(gh pr view ${{ github.event.pull_request.number }} --json url -q ".url")
+          gh issue create --title "$PR_TITLE" --body "Pull Request: $PR_URL" --assignee "$(gh pr view ${{ github.event.pull_request.number }} --json user.login -q ".user.login")"
