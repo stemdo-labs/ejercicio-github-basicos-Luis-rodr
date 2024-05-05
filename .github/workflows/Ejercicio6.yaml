@@ -1,0 +1,23 @@
+name: Docker Build and Push
+
+on:
+  workflow_dispatch:
+
+permissions: write-all 
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: set a image tag
+        id: tag_setter
+        run: |
+          IMAGE_TAG="latest"
+          if [ -n "${{ github.sha }}" ]; then
+            IMAGE_TAG="${{ github.sha }}"
+          fi
+          echo "::set-output name=tag::$IMAGE_TAG"
+
+      - uses: ./.github/workflows/Ejercicio6_called.yaml
+        with:
+          tag: ${{ steps.tag_setter.outputs.tag }}

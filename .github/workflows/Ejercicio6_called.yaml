@@ -1,0 +1,28 @@
+name: Ejercicio6_called
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        required: true
+        type: string
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: login to registry
+        run: docker login -u "${{ secrets.login }}" -p ${{ secrets.token }}
+          
+      - name: build and push an image
+        run: | # supongamos que las dos lineas siguientes son un docker build -t 
+          docker pull nginx
+          docker tag nginx ${{ secrets.login }}/luysos_place:${{ inputs.tag }} . 
+          docker push ${{ secrets.login }}/luysos_place:${{ inputs.tag }}
+
+
+
+
