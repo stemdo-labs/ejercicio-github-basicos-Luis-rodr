@@ -1,0 +1,57 @@
+name: n operacion m
+
+on:
+  workflow_dispatch:
+    inputs:
+
+      m:
+        description: 'Numero 2'
+        required: true
+        type: number
+      n:
+        description: 'Numero 1'
+        required: true
+        type: number
+
+      sign:
+        description: '+,-,*,/'
+        required: true
+        default: '+'
+        options: ['+', '-', '*', '/']
+        type: choice
+
+
+
+jobs:
+  calculadora:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: print result
+        run: |
+          
+          n=${{ inputs.n }}
+          m=${{ inputs.m }}
+
+          sign=${{ inputs.sign }}
+          
+          echo "$n $sign $m = "
+
+          case $sign in
+            "+")
+              echo -e "$n + $m" | bc
+              ;;
+            "-")
+              echo -e "$n - $m" | bc
+              ;;
+            "*")
+              echo -e "$n * $m" | bc
+              ;;
+            "/")
+            if [ "$m" -eq 0 ]; then
+                echo "Error: Division by zero!"
+            else
+            echo -e=$("scale=2; $n / $m" | bc)
+            fi
+              ;;
+          esac
