@@ -1,0 +1,44 @@
+name: Simular estado de CI CD
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Building
+        run: |
+          echo "Building..."
+          echo -n "Progress: "
+          for i in {1..10}; do
+            echo -n "#"
+            sleep 1
+          done
+          echo -e "\rProgress: [##########] (100%)"
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: |
+          echo "Testing..."
+          echo -n "Progress: "
+          for i in {1..10}; do
+            echo "Test $i..."
+            sleep 1
+            echo -e "SUCCESSFUL"
+          done
+          echo -e "\rTEST DE COVERTURA FINALIZADOS: [##########]"
+        
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pushing
+        run: |
+          echo "Building..."
+          echo -n "Progress: "
+          for i in {1..10}; do
+            echo -n "#"
+            sleep 1
+          done
+          echo -e "\rBuild complete!!: [##########] (100%)"

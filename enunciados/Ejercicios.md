@@ -24,7 +24,3 @@
 
 
 1. **Objetivo:** Crear un workflow reusable que nos permita reutilizar los pasos ``login to registry``, ``set a image tag``,  ``build and push an image``. Todos los valores necesarios deben pasarse por varibles o secretos según su criticidad. 
-
-
-
-
